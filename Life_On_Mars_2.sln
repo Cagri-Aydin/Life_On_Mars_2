@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Life_On_Mars_2", "Life_On_Mars_2\Life_On_Mars_2.csproj", "{EBB74657-DF0E-4FAF-A7D2-358168D77784}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBB74657-DF0E-4FAF-A7D2-358168D77784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB74657-DF0E-4FAF-A7D2-358168D77784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB74657-DF0E-4FAF-A7D2-358168D77784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB74657-DF0E-4FAF-A7D2-358168D77784}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2B451D5-3739-420B-B73B-E366032D4F40}
+	EndGlobalSection
+EndGlobal
