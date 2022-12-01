@@ -433,6 +433,14 @@ namespace Life_On_Mars_2
                         {
                             Console.Write("Fourth codon error. ");
                         }
+                        if (blobDNAarray[12] == 'A' & blobDNAarray[13] == 'T' & blobDNAarray[14] == 'G')
+                        {
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Second starter codon error. ");
+                        }
                         if (blobDNAarray[blobDNAarray.Length - 3] == 'T' & blobDNAarray[blobDNAarray.Length - 2] == 'G' & blobDNAarray[blobDNAarray.Length - 1] == 'A' & (blobDNAarray.Length / 3) - 4 >= 3)
                         {
                             Console.WriteLine("Blob is OK. ");
@@ -525,128 +533,209 @@ namespace Life_On_Mars_2
                         Console.Write("DNA strand  :");
                         for (int i = 0; i < AAcodons.Length; i++)
                         {
-
                             Console.Write(AAcodons[i] + " ");
                         }
                         //Determine amino acids
                         Console.Write("\nAmino acids :");
+                        int i_7 = 0;
                         try
                         {
-                            int i = 0;
-                            while (i < AAcodons.Length)
+                            while (i_7 < blobDNAarray.Length)
                             {
-                                if (AAcodons[i] == "GCT" || AAcodons[i] == "GCC" || AAcodons[i] == "GCA" || AAcodons[i] == "GCG")
+                                if (blobDNAarray[i_7] == 'A')      // Starts with Adenin
                                 {
-                                    Console.Write(aminoacids[0] + " ");
-                                    i++;
+                                    if (blobDNAarray[i_7 + 1] == 'A') //AA
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G')  //AAA & AAG
+                                        {
+                                            Console.Write("Lys ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //AAT & AAC
+                                        {
+                                            Console.Write("Asn ");
+                                            i_7 = i_7 + 3;
+                                        }
+
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'T') //AT
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'C' | blobDNAarray[i_7 + 2] == 'T') //ATA & ATC & ATT
+                                        {
+                                            Console.Write("Ile ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'G') //ATG
+                                        {
+                                            Console.Write("Met ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'G') //AG
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G') //AGA & AGG
+                                        {
+                                            Console.Write("Arg ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //AGT & AGC
+                                        {
+                                            Console.Write("Ser ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'C') //AC
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //ACT & ACC & ACA & ACG
+                                        {
+                                            Console.Write("Thr ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
                                 }
-                                if (AAcodons[i] == "CGT" || AAcodons[i] == "CGC" || AAcodons[i] == "CGA" || AAcodons[i] == "CGG" || AAcodons[i] == "AGA" || AAcodons[i] == "AGG")
+                                if (blobDNAarray[i_7] == 'T') // starts with Thymin
                                 {
-                                    Console.Write(aminoacids[1] + " ");
-                                    i++;
+                                    if (blobDNAarray[i_7 + 1] == 'A') //TA
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G') //TAA & TAG
+                                        {
+                                            Console.Write("END ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //TAT & TAC
+                                        {
+                                            Console.Write("Tyr ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'T') //TT
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G') //TTA & TTG
+                                        {
+                                            Console.Write("Leu ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //TTT & TTC
+                                        {
+                                            Console.Write("Phe ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'G') //TG
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //TGT & TGC
+                                        {
+                                            Console.Write("Cys ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'A') //TGA
+                                        {
+                                            Console.Write("END ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'G') //TGG
+                                        {
+                                            Console.Write("Trp ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'C') //TC
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //TCA & TCG & TCT & TCC
+                                        {
+                                            Console.Write("Ser ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
                                 }
-                                if (AAcodons[i] == "AAT" || AAcodons[i] == "AAC")
+                                if (blobDNAarray[i_7] == 'G') // starts with Guanine
                                 {
-                                    Console.Write(aminoacids[2] + " ");
-                                    i++;
+                                    if (blobDNAarray[i_7 + 1] == 'A') //GA
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //GAT & GAC
+                                        {
+                                            Console.Write("Asp ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G') //GAA & GAG
+                                        {
+                                            Console.Write("Glu ");
+                                            i_7 = i_7 + 3;
+                                        }
+
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'T') //GT
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //GTA & GTG & GTT & GTC
+                                        {
+                                            Console.Write("Val ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'C') //GC
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //GCA & GCG & GCT & GCC
+                                        {
+                                            Console.Write("Ala ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'G') //GG
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //GGA & GGG & GGT & GGC
+                                        {
+                                            Console.Write("Gly ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+
                                 }
-                                if (AAcodons[i] == "GAT" || AAcodons[i] == "GAC")
+                                if (blobDNAarray[i_7] == 'C') // starts with Cytosine
                                 {
-                                    Console.Write(aminoacids[3] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TGT" || AAcodons[i] == "TGC")
-                                {
-                                    Console.Write(aminoacids[4] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "CAA" || AAcodons[i] == "CAG")
-                                {
-                                    Console.Write(aminoacids[5] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "GAA" || AAcodons[i] == "GAG")
-                                {
-                                    Console.Write(aminoacids[6] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "GGT" || AAcodons[i] == "GGC" || AAcodons[i] == "GGA" || AAcodons[i] == "GGG")
-                                {
-                                    Console.Write(aminoacids[7] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "CAT" || AAcodons[i] == "CAC")
-                                {
-                                    Console.Write(aminoacids[8] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "AAT" || AAcodons[i] == "ATC" || AAcodons[i] == "ATA")
-                                {
-                                    Console.Write(aminoacids[9] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "CTT" || AAcodons[i] == "CTC" || AAcodons[i] == "CTA" || AAcodons[i] == "CTG" || AAcodons[i] == "TTA" || AAcodons[i] == "TTG")
-                                {
-                                    Console.Write(aminoacids[10] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "AAA" || AAcodons[i] == "AAG")
-                                {
-                                    Console.Write(aminoacids[11] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "ATG")
-                                {
-                                    Console.Write(aminoacids[12] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TTT" || AAcodons[i] == "TTC")
-                                {
-                                    Console.Write(aminoacids[13] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "CCT" || AAcodons[i] == "CCC" || AAcodons[i] == "CCA" || AAcodons[i] == "CCG")
-                                {
-                                    Console.Write(aminoacids[14] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TCT" || AAcodons[i] == "TCC" || AAcodons[i] == "TCA" || AAcodons[i] == "TCG" || AAcodons[i] == "AGT" || AAcodons[i] == "AGC")
-                                {
-                                    Console.Write(aminoacids[15] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "ACT" || AAcodons[i] == "ACC" || AAcodons[i] == "ACA" || AAcodons[i] == "ACG")
-                                {
-                                    Console.Write(aminoacids[16] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TGG")
-                                {
-                                    Console.Write(aminoacids[17] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TAT" || AAcodons[i] == "TAC")
-                                {
-                                    Console.Write(aminoacids[18] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "GTT" || AAcodons[i] == "GTC" || AAcodons[i] == "GTA" || AAcodons[i] == "GTG")
-                                {
-                                    Console.Write(aminoacids[19] + " ");
-                                    i++;
-                                }
-                                if (AAcodons[i] == "TAA" || AAcodons[i] == "TGA" || AAcodons[i] == "TAG")
-                                {
-                                    Console.Write(aminoacids[20] + " ");
-                                    i++;
+                                    if (blobDNAarray[i_7 + 1] == 'A') //CA
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //CAT & CAC
+                                        {
+                                            Console.Write("His ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G') //CAA & CAG
+                                        {
+                                            Console.Write("Gln ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'T') //CT
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //CTA & CTG & CTT & CTC
+                                        {
+                                            Console.Write("Leu ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'G') //CG
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //CGA & CGG & CGT & CGC
+                                        {
+                                            Console.Write("Arg ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
+                                    if (blobDNAarray[i_7 + 1] == 'C') //CC
+                                    {
+                                        if (blobDNAarray[i_7 + 2] == 'A' | blobDNAarray[i_7 + 2] == 'G' | blobDNAarray[i_7 + 2] == 'T' | blobDNAarray[i_7 + 2] == 'C') //CCA & CCG & CCT & CCC
+                                        {
+                                            Console.Write("Pro ");
+                                            i_7 = i_7 + 3;
+                                        }
+                                    }
                                 }
                             }
                         }
                         catch (Exception)
                         {
-
-                            Console.Write("");
                         }
+                        
                         OPnumber = 0;
                         Console.ReadLine();
                         break;
@@ -815,42 +904,44 @@ namespace Life_On_Mars_2
                         Console.WriteLine("\nPlease enter the codon sequence you want searched for");
                         string codon10 = Console.ReadLine();
                         codon10 = codon10.ToUpper();
+
                         Char[] codon10array = codon10.ToCharArray();
                         Console.WriteLine("Codon squence: " + codon10);
+                        
                         Console.WriteLine("Which codon do you want it to be searched starting from");
                         int line_10 = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Starting from: " + line_10);
-
-                        int lineorder = 0;
-                        int counter = 0;
-                        for (int i = line_10*3-3; i < blobDNAarray.Length; i=blobDNAarray.Length)
+                        
+                        int linecount = line_10*3-3;
+                        int counter_10 = 0;
+                        
+                        
+                        try
                         {
-                            try
+                            for (int i = line_10 * 3 - 3; i < blobDNAarray.Length; i++)
                             {
-                                if (codon10array[counter] == blobDNAarray[i])
+                                if (codon10array[counter_10] == blobDNAarray[i])
                                 {
-                                    counter++;
-                                    lineorder++;
+                                    counter_10++;
+                                    linecount++;
                                 }
                                 else
                                 {
-                                    counter = 0;
-                                    lineorder++;
+                                    counter_10 = 0;
+                                    linecount++;
                                 }
-                                if (counter == codon10array.Length)
+                                if (counter_10 == codon10array.Length)
                                 {
-                                    Console.WriteLine("The reslult is : " + lineorder / 3);
-                                    Console.ReadLine();
-                                }
-                                else
-                                {
-                                    Console.WriteLine("The result is : -1");
+                                    Console.WriteLine("The result is : " + ((linecount/3)-(codon10array.Length/3-1)));
                                 }
                             }
-                            catch (Exception)
+                            if (counter_10 != codon10array.Length)
                             {
-                                i = 1000000;    
+                                Console.WriteLine("The result is : -1");
                             }
+                        }
+                        catch (Exception)
+                        {   
                         }
                         OPnumber = 0;
                         Console.ReadLine();
@@ -861,6 +952,7 @@ namespace Life_On_Mars_2
                     
                     case 11://============================================= O P A R A T I O N 11 =====================================================
                         Console.Clear();
+                        Console.Clear();
                         Console.WriteLine("==>  OPERATION 11 ");
 
                         Console.Write("Your DNA strand is : ");
@@ -868,40 +960,403 @@ namespace Life_On_Mars_2
                         {
                             Console.Write(blobDNAarray[i]);
                         }
-                        
+
                         Console.WriteLine("\nHow many codons do you want to reverse?");
                         int reverse_11 = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Starting from?");
                         int reverse = Convert.ToInt32(Console.ReadLine());
-                        
-                        Console.WriteLine("Reverse " + reverse_11 + "codons, " + "starting from " + reverse + "th codon.");
+
+                        Console.WriteLine("Reverse " + reverse_11 + " codons, " + "starting from " + reverse + "th codon.");
 
                         if (reverse_11 % 2 == 1)
                         {
-                            for (int i = (reverse - 1) * 3 + 1; i < ((reverse - 1) * 3 + 1) + ((reverse / 2) * 3); i = i++)
+                            for (int i = (reverse * 3) - 3; i < blobDNAarray.Length; i = i++)
                             {
                                 char temp = blobDNAarray[i];
-                                blobDNAarray[i] = blobDNAarray[i + (reverse_11 * 3)];
-                                blobDNAarray[i + (reverse_11 * 3)] = temp;
+                                blobDNAarray[i] = blobDNAarray[i + (reverse_11 * 3) - 3];
+                                blobDNAarray[i + (reverse_11 * 3) - 3] = temp;
                             }
                             Console.WriteLine(blobDNAarray);
                         }
 
                         else if (reverse_11 % 2 == 0)
                         {
-                            for (int i = (reverse - 1) * 3 + 1; i <= ((reverse - 1) * 3 + 1) + ((reverse / 2) * 3); i = i++)
+                            for (int i = (reverse * 3) - 3; i <= reverse_11*3-1; i = i++)
                             {
                                 char temp = blobDNAarray[i];
-                                blobDNAarray[i] = blobDNAarray[i + (reverse_11 * 2)];
-                                blobDNAarray[i + (reverse_11 * 2)] = temp;
-                            }
-                            Console.WriteLine(blobDNAarray);
+                                blobDNAarray[i] = blobDNAarray[i + (reverse_11 * 2) - 1];
+                                blobDNAarray[i + (reverse_11 * 2) - 1] = temp;
+                            }                       
                         }
-
+                        for (int i = 0; i < blobDNAarray.Length; i++)
+                        {
+                            Console.Write(blobDNAarray[i]);
+                        }
 
                         break;
                     //##############################################################################################################################
+                    
+                    
+                    case 12://============================================= O P A R A T I O N 12 =====================================================
+                        Console.Clear();
+                        Console.WriteLine("==>  OPERATION 12 ");
 
+                        Console.WriteLine("Your DNA strand is : ");
+                        for (int i = 0; i < blobDNAarray.Length; i++)
+                        {
+                            Console.Write(blobDNAarray[i]);
+                        }
+
+                        int counterATG = 0;
+                        int counterTAA = 0;
+                        int counterTGA = 0;
+                        int counterTAG = 0;
+                        char[] charATG = { 'A', 'T', 'G' };
+                        char[] charTAA = { 'T', 'A', 'A' };
+                        char[] charTGA = { 'T', 'G', 'A' };
+                        char[] charTAG = { 'T', 'A', 'G' };
+                        int ATGjump = 0;
+                        int TAAjump = 0;
+                        int TGAjump = 0;
+                        int TAGjump = 0;
+                        int totalATG = 0;
+                        int totalTAA = 0;
+                        int totalTGA = 0;
+                        int totalTAG = 0;
+
+
+                        if (blobDNAarray[0]=='A'& blobDNAarray[1] == 'T' & blobDNAarray[2] == 'G' )
+                        {
+                            
+                                for (int i = 0; i < blobDNAarray.Length; i++)
+                                {
+                                    try
+                                    {
+                                        if (blobDNAarray[i] == charATG[ATGjump])
+                                        {
+                                            counterATG++;
+                                            if (counterATG == 3)
+                                            {
+                                                counterATG = 0;
+                                                totalATG++;
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            ATGjump = ATGjump + 3 - counterATG;
+                                            counterATG = 0;
+                                        }
+
+                                        if (blobDNAarray[i] == charTAA[TAAjump])
+                                        {
+                                            counterTAA++;
+                                            if (counterTAA == 3)
+                                            {
+                                                counterTAA = 0;
+                                                totalTAA++;
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            TAAjump = TAAjump + 3 - counterTAA;
+                                            counterTAA = 0;
+                                        }
+
+                                        if (blobDNAarray[i] == charTGA[TGAjump])
+                                        {
+                                            counterTGA++;
+                                            if (counterTGA == 3)
+                                            {
+                                                counterTGA = 0;
+                                                totalTGA++;
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            TGAjump = TGAjump + 3 - counterTAG;
+                                            counterTGA = 0;
+                                        }
+
+                                        if (blobDNAarray[i] == charTAG[TAGjump])
+                                        {
+                                            counterTAG++;
+                                            if (counterTAG == 3)
+                                            {
+                                                counterTAG = 0;
+                                                totalTAG++;
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            TAGjump = TAGjump + 3 - counterTGA;
+                                            counterTAG = 0;
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        if (totalATG == (totalTAA + totalTAG + totalTGA))
+                                        {
+                                            Console.WriteLine("Numbers of genes : " + totalATG);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("This DNA doesn't belongs to a Blob organism.");
+                                        }
+
+                                    }
+                                    
+
+
+
+                                }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("This DNA doesn't belongs to a Blob organism.");
+                        }
+                        
+
+
+
+                        /*char[] ATGarray = { 'A', 'T', 'G' };
+                        int counter12 = 0;
+
+                        for (int i = 0; i < blobDNAarray.Length; i++)
+                        {
+                            int control = 0;
+                            if (ATGarray[counter12] == blobDNAarray[i])
+                            {
+                                counter12++;
+                            }
+
+                        }
+                        Console.WriteLine("Numbers of genes:" + counter12);
+
+
+                        OPnumber = 0;
+                        Console.ReadLine();*/
+
+
+
+
+                        break;
+                    
+                    
+                    
+                    
+                    case 13: //============================================= O P A R A T I O N 13 =====================================================
+                        Console.Clear();
+                        Console.WriteLine("==>  OPERATION 13 ");
+
+
+                        char[] charDNAarray = new char[blobDNAarray.Length];
+                        charDNAarray = blobDNAarray;
+                        string[] Dnaa = new string[charDNAarray.Length / 3];
+                        int iDnaa = 0; // for Counter of index of  Dnaa
+                        for (int i = 0; i < charDNAarray.Length; i += 3)
+                            Dnaa[iDnaa++] = charDNAarray[i].ToString() + charDNAarray[i + 1].ToString() + charDNAarray[i + 2].ToString();
+
+
+                        int min = int.MaxValue; // for minimum number of codons in DNA
+                        int counter = 0; // For number of codons in DNA
+                        int c = 0; // for undrastan the limit of min DNA (for example from iDnaa=6 to iDnaa=10)
+                        string[] MinDna = new string[100000];
+                        int cMinDna = 0; // useful length of MinDna
+                        int position = 0; // for position
+
+                        iDnaa = 0;
+                        while (iDnaa < Dnaa.Length)
+                        {
+                            if (Dnaa[iDnaa] == "ATG")
+                            {
+                                c = iDnaa;
+                                counter = 1;
+                                while (Dnaa[c] != "TGA" && Dnaa[c] != "TAG" && Dnaa[c] != "TAA")
+                                {
+                                    c++;
+                                    counter++;
+                                }
+
+                                if (counter < min)
+                                {
+                                    min = counter;
+                                    position = iDnaa;
+                                    cMinDna = 0;
+                                    for (int i = iDnaa; i < c + 1; i++)
+                                        MinDna[cMinDna++] = Dnaa[i];
+                                }
+                            }
+                            iDnaa++;
+                        }// end of while
+
+
+                        Console.Write("DNA strand    : ");
+                        for (int i = 0; i < blobDNAarray.Length; i++)
+                        {
+                            Console.Write(blobDNAarray[i]);
+                        }
+                        Console.Write("\nShortest gene : ");
+                        for (int i = 0; i < cMinDna; i++)
+                            Console.Write(MinDna[i]);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Number of codons in the gene : " + min);
+                        Console.WriteLine("Position of the gene : " + (position + 1));
+
+
+                        OPnumber = 0;
+                        Console.ReadLine();
+
+                        break;
+                    
+                    
+                    case 14://============================================= O P A R A T I O N 14 =====================================================
+                        Console.Clear();
+                        Console.WriteLine("==>  OPERATION 14 ");
+
+
+                        char[] charDNAarray_14 = new char[blobDNAarray.Length];
+                        charDNAarray_14 = blobDNAarray;
+                        string[] Dnaa_14 = new string[charDNAarray_14.Length / 3];
+                        int iDnaa_14 = 0; // for Counter of index of  Dnaa
+                        for (int i = 0; i < charDNAarray_14.Length; i += 3)
+                            Dnaa_14[iDnaa_14++] = charDNAarray_14[i].ToString() + charDNAarray_14[i + 1].ToString() + charDNAarray_14[i + 2].ToString();
+
+                        int max = 0; // for maximum number of codons in DNA
+                        int counter_14 = 0; // For number of codons in DNA
+                        int c_14 = 0; // for undrastan the limit of max DNA (for example from iDnaa=4 to iDnaa=12)
+                        string[] MaxDna_14 = new string[100000];
+                        int position_14 = 0; // for position
+                        iDnaa_14 = 0;// counter of index of Dnaa
+                        int cMaxDna = 0;
+                        while (iDnaa_14 < Dnaa_14.Length)
+                        {
+                            if (Dnaa_14[iDnaa_14] == "ATG")
+                            {
+                                c_14 = iDnaa_14;
+                                counter_14 = 1;
+                                while (Dnaa_14[c_14] != "TGA" && Dnaa_14[c_14] != "TAG" && Dnaa_14[c_14] != "TAA")
+                                {
+                                    counter_14++;
+                                    c_14++;
+                                }
+                                if (counter_14 > max)
+                                {
+                                    position_14 = iDnaa_14;
+                                    max = counter_14;
+                                    cMaxDna = 0;
+                                    for (int i = iDnaa_14; i <= c_14; i++)
+                                        MaxDna_14[cMaxDna++] = Dnaa_14[i];
+                                }
+                            }
+                            iDnaa_14++;
+                        }// end of while
+
+                        Console.Write("DNA strand : ");
+                        for (int i = 0; i < blobDNAarray.Length; i++)
+                        {
+                            Console.Write(blobDNAarray[i]);
+                        }
+                        Console.Write("\nLongest gene : ");
+                        for (int i = 0; i < cMaxDna; i++)
+                            Console.Write(MaxDna_14[i]);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Number of codons in the gene : " + max);
+                        Console.WriteLine("Position of the gene : " + (position_14 + 1));
+
+                        
+                        OPnumber = 0;
+                        Console.ReadLine();
+
+                        break;
+                    
+                    
+                    case 15://============================================= O P A R A T I O N 15 =====================================================
+                        Console.Clear();
+                        Console.WriteLine("==>  OPERATION 15 ");
+
+                        char[] charDNAarray_15 = new char[blobDNAarray.Length];
+                        charDNAarray_15 = blobDNAarray;
+                        Console.Write("Enter number of nucletide :");
+                        int icharDNAarray = 0;// counter of index of charDNAarray
+                        int n = Convert.ToInt32(Console.ReadLine());
+                        char[] Temp1 = new char[charDNAarray_15.Length];
+                        char[] Temp2 = new char[charDNAarray_15.Length];
+                        int iTemp = 0; // for counter of index of Temp 1 and two
+                        int flag_15 = 0; // for undrstand that Temp1 is equal to Temp2 or not
+                        int count = 0; // count of repeat 
+                        int max_15 = 0; // maximum repeat
+                        char[] Max = new char[n]; // Most repeated sequence  
+                        int iMax = 0; // counter of Max
+
+
+
+                        while (icharDNAarray < charDNAarray_15.Length - n)
+                        {
+
+                            iTemp = 0;
+                            int c_15 = icharDNAarray;
+                            count = 0;
+
+                            for (int j = c_15; j < n + c_15; j++)
+
+                                Temp1[iTemp++] = charDNAarray_15[j];
+
+
+                            c_15 = c_15 + n;
+                            count++;
+                            while (c_15 < charDNAarray_15.Length)
+                            {
+                                if (charDNAarray_15[c_15] == Temp1[0])
+                                {
+                                    iTemp = 0;
+
+                                    for (int j = c_15; j < n + c_15 && j < charDNAarray_15.Length; j++)
+                                    {
+                                        Temp2[iTemp++] = charDNAarray_15[j];
+
+                                    }
+                                    flag_15 = 0;
+                                    for (int i = 0; i < n; i++)
+                                        if (Temp1[i] == Temp2[i])
+                                            flag_15++;
+                                    if (flag_15 == n)
+                                    {
+                                        c_15 = c_15 + n;
+                                        count++;
+                                    }
+                                    else
+                                        c_15++;
+                                }
+                                else
+                                    c_15++;
+                            }
+                            if (count > max_15)
+                            {
+                                max = count;
+                                iMax = 0;
+                                for (int i = icharDNAarray; i < n + icharDNAarray; i++)
+                                    Max[iMax++] = charDNAarray_15[i];
+                            }
+                            icharDNAarray++;
+                        }// end of while
+
+                        Console.Write("Most repeated sequence :");
+                        for (int i = 0; i < n; i++)
+                            Console.Write(Max[i]);
+                        Console.WriteLine();
+                        Console.WriteLine("Frequency:" + max_15);
+
+                        OPnumber = 0;
+                        Console.ReadLine();
+
+                        break;
                     
                     case 16://============================================= O P A R A T I O N 16 =====================================================
                         Console.Clear();
@@ -910,7 +1365,7 @@ namespace Life_On_Mars_2
                         char a = 'A';
                         char t = 'T';
                         char g = 'G';
-                        char c = 'C';
+                        char c_16 = 'C';
 
                         Console.WriteLine("-------------------------------------------------");
 
@@ -944,7 +1399,7 @@ namespace Life_On_Mars_2
                         int counter16C = 0;
                         for (int i = 0; i < blobDNAarray.Length; i++)
                         {
-                            if (c == blobDNAarray[i])
+                            if (c_16 == blobDNAarray[i])
                             {
                                 counter16C++;
                             }
@@ -963,7 +1418,12 @@ namespace Life_On_Mars_2
                         Console.ReadLine();
 
                         break;
-                        //##############################################################################################################################
+                    //##############################################################################################################################
+                    case 17:
+                        
+                        
+                        
+                        break;
                 }
             }
         }
